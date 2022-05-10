@@ -118,6 +118,8 @@ int main(int argc, char *argv[])
 	sprintf(mqtt_topic, "homeassistant/sensor/cyblemeter_%s/state", meter_id);
 
 	printf("Liters: %i\n", meter_data.liters);
+	printf("Battery left (Months): %i", meter_data.battery_left);
+	
 	mosquitto_publish(mosq, NULL, mqtt_topic, strlen(buff),buff,0,false);
 
 
