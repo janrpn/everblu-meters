@@ -91,25 +91,25 @@ int main(int argc, char *argv[])
 	}
 	
 	//Set callback functions
-	mosquitto_log_callback_set(mosq, my_log_callback);
-	mosquitto_connect_callback_set(mosq, my_connect_callback);
-	mosquitto_message_callback_set(mosq, my_message_callback);
-	mosquitto_subscribe_callback_set(mosq, my_subscribe_callback);
+	// mosquitto_log_callback_set(mosq, my_log_callback);
+	// mosquitto_connect_callback_set(mosq, my_connect_callback);
+	// mosquitto_message_callback_set(mosq, my_message_callback);
+	// mosquitto_subscribe_callback_set(mosq, my_subscribe_callback);
 
-	mosquitto_username_pw_set(mosq, MQTT_USER, MQTT_PASS);
+	// mosquitto_username_pw_set(mosq, MQTT_USER, MQTT_PASS);
 
-	//Connect to MQTT server
-	if(mosquitto_connect(mosq, MQTT_HOST, MQTT_PORT, MQTT_KEEP_ALIVE)){
-		fprintf(stderr, "ERROR: Unable to connect to MQTT broker.\n");
-		return 1;
-	}
-	//Start a thread, and call mosquitto? Loop() continuously in the thread to process network information
-	int loop = mosquitto_loop_start(mosq);
-	if(loop != MOSQ_ERR_SUCCESS)
-	{
-		fprintf(stderr, "ERROR: failed to create mosquitto loop");
-		return 1;
-	}
+	// //Connect to MQTT server
+	// if(mosquitto_connect(mosq, MQTT_HOST, MQTT_PORT, MQTT_KEEP_ALIVE)){
+	// 	fprintf(stderr, "ERROR: Unable to connect to MQTT broker.\n");
+	// 	return 1;
+	// }
+	// //Start a thread, and call mosquitto? Loop() continuously in the thread to process network information
+	// int loop = mosquitto_loop_start(mosq);
+	// if(loop != MOSQ_ERR_SUCCESS)
+	// {
+	// 	fprintf(stderr, "ERROR: failed to create mosquitto loop");
+	// 	return 1;
+	// }
 
 	IO_init();
 	meter_data = get_meter_data();
@@ -120,11 +120,11 @@ int main(int argc, char *argv[])
 	printf("Liters: %i\n", meter_data.liters);
 	printf("Battery left (Months): %i", meter_data.battery_left);
 	
-	mosquitto_publish(mosq, NULL, mqtt_topic, strlen(buff),buff,0,false);
+	// mosquitto_publish(mosq, NULL, mqtt_topic, strlen(buff),buff,0,false);
 
 
-	mosquitto_destroy(mosq);
-	mosquitto_lib_cleanup();
+	// mosquitto_destroy(mosq);
+	// mosquitto_lib_cleanup();
 
 
 	return 0;
